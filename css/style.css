@@ -3,7 +3,7 @@
 *{
     margin: 0;
 }
-
+/* #A001 */
 /******* ヘッダーのスタイル ********/
 nav {
     background: #fff;
@@ -42,7 +42,7 @@ nav ul {
 .item a:hover{
     color: #0000FF;
 }
-
+/* #A001 END */
 /******* ここから各セクションのスタイル ********/
 h1 {
     font-size: 1.25rem;
@@ -65,6 +65,7 @@ section .wrapper{
     max-width: 800px;
 }
 
+/* #A002 */
 /******* ここからフッターのスタイル ********/
 footer {
     background-color: #4169E1;
@@ -80,3 +81,4 @@ footer p {
     margin:0 auto;
     font-weight:bold;
 }
+/* #A002 END*/
