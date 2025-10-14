@@ -13,38 +13,11 @@ body {
     margin: 0;
     padding: 0;
 }
+/* #A001 */
+/******* ヘッダーのスタイル ********/
 
-/* --- コンテナ (画面中央のボックス) --- */
-.container {
-    margin: 50px auto;
-    padding: 30px 40px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* --- 見出し --- */
-h2 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-/* --- フォーム部品 --- */
-.form-group {
-    margin-bottom: 25px;
-    text-align: left;
-}
-
-.form-label {
-    font-size: 16px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.form-input {
+nav {
+    background: #fff;
     width: 100%;
     height: 40px; /* 少し高さを出す */
     border: 1px solid #ccc;
