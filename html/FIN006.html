@@ -7,22 +7,23 @@
     <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body class="fin006">
-
+    
     <div class="container fin006-container"> 
-
-        <a href="FIN008.html" class="page-menu-icon">😊</a>
-
-        <h2 class="fin006-title">どんなお店をお探しですか？</h2>
+        
+        <div class="fin006-title-bar">
+            <h2>どんなお店をお探しですか？</h2>
+            <span class="header-icon-area" id="headerIconArea">
+                </span>
+        </div>
 
         <div class="fin006-search-box">
-
             <div class="fin006-criteria-row">
-                <label for="budget" class="fin006-label">1人当たりの予算</label>
+                <label for="budgetSlider" class="fin006-label">1人当たりの予算</label>
                 <div class="fin006-input-area">
-                    <input type="range" id="budget" class="fin006-slider" min="1000" max="20000" step="1000">
-                    </div>
+                    <input type="range" id="budgetSlider" class="fin006-slider" min="1000" max="20000" step="1000" value="10000">
+                    <span id="budgetValue" class="fin006-value-display">10000円</span>
+                </div>
             </div>
-
             <div class="fin006-criteria-row">
                 <label for="distance" class="fin006-label">距離</label>
                 <div class="fin006-input-area">
@@ -34,7 +35,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="fin006-criteria-row">
                 <span class="fin006-label">ジャンル</span>
                 <div class="fin006-input-area fin006-checkbox-group">
@@ -45,11 +45,58 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="button-area button-area-center">
-            <button class="btn fin006-btn">検索</button>
+            <button class="btn btn-primary fin006-btn" onclick="location.href='FIN007.html'">
+                検索
+            </button>
         </div>
-        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- スライダー処理 ---
+            const budgetSlider = document.getElementById('budgetSlider');
+            const budgetValue = document.getElementById('budgetValue');
+            if (budgetSlider && budgetValue) {
+                budgetSlider.addEventListener('input', function() {
+                    budgetValue.textContent = this.value + '円';
+                });
+                budgetValue.textContent = budgetSlider.value + '円';
+            }
+
+            // --- ログイン状態チェック処理 ---
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const savedImageUrl = localStorage.getItem('profileImage');
+            const iconArea = document.getElementById('headerIconArea');
+
+            if (!iconArea) return; // エラー防止
+
+            if (isLoggedIn === 'true') {
+                let imageUrlToShow = savedImageUrl ? savedImageUrl : '../images/icon_default.png';
+
+                // ★ 変更点：クラス名を .header-profile-icon に統一
+                iconArea.innerHTML = `
+                    <a href="FIN008.html" class="header-profile-icon"> 
+                        <img src="${imageUrlToShow}" alt="メニュー">
+                    </a>`;
+            } else {
+                iconArea.innerHTML = '<a href="FIN002.html" class="btn btn-secondary header-login-btn">ログイン</a>';
+                
+                const loginBtn = iconArea.querySelector('.header-login-btn');
+                if (loginBtn) {
+                    loginBtn.addEventListener('click', function(e) {
+                        e.preventDefault(); 
+                        const currentUrl = window.location.href;
+                        localStorage.setItem('redirectUrl', currentUrl); 
+                        localStorage.setItem('loginRedirect', currentUrl); 
+                        window.location.href = e.target.href; 
+                    });
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
